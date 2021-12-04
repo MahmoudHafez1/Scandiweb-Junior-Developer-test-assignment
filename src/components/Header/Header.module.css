@@ -1,0 +1,20 @@
+.headerContainer {
+  padding: 24px 101px 0 101px;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.navLink {
+  text-decoration: none;
+  padding: 4px 16px 32px 16px;
+  font-weight: 400;
+  color: var(-apple-system);
+}
+
+.navLink:hover {
+  color: var(--primary);
+}
