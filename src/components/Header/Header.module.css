@@ -1,10 +1,19 @@
 .headerContainer {
+  position: fixed;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100vw;
   padding: 24px 101px 0 101px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navList {
   list-style: none;
   display: flex;
+  padding: 0;
   align-items: center;
 }
 
@@ -17,4 +26,13 @@
 
 .navLink:hover {
   color: var(--primary);
+}
+
+.actionsContainer {
+  display: flex;
+  align-items: center;
+}
+
+.action:hover {
+  cursor: pointer;
 }
