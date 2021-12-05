@@ -9,7 +9,7 @@ class Actions extends Component {
       <div className={styles.actionsContainer}>
         <BsCurrencyDollar
           size={20}
-          style={{ marginRight: "38" }}
+          style={{ marginRight: "38px" }}
           cursor="pointer"
         />
         <BsCart2 size={20} cursor="pointer" />

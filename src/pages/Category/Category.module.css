@@ -1,0 +1,17 @@
+.container {
+  padding: 5.2vh 7vw 12.6vh 7vw;
+}
+
+.title {
+  font-style: normal;
+  font-size: 2.6rem;
+  color: var(--secondary);
+  margin-bottom: 5.7vh;
+  margin-top: 0;
+}
+
+.productListCont {
+  display: grid;
+  grid-gap: 5.2vh 2.7vw;
+  grid-template-columns: repeat(3, 1fr);
+}

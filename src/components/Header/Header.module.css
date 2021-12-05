@@ -1,10 +1,9 @@
 .headerContainer {
-  position: fixed;
   box-sizing: border-box;
   top: 0;
   left: 0;
   width: 100vw;
-  padding: 24px 101px 0 101px;
+  padding: 1.8vh 7vw 0 7vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,9 +18,10 @@
 
 .navLink {
   text-decoration: none;
-  padding: 4px 16px 32px 16px;
+  padding: 0.26vh 1.1vw 2.1vh 1vw;
   font-weight: 400;
-  color: var(-apple-system);
+  font-size: 1rem;
+  color: var(--secondary);
 }
 
 .navLink:hover {
