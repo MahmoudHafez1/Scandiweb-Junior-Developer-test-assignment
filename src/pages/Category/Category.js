@@ -43,7 +43,7 @@ class Category extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.params.category != this.props.params.category) {
+    if (prevProps.params.category !== this.props.params.category) {
       this.fetchProducts();
     }
   }

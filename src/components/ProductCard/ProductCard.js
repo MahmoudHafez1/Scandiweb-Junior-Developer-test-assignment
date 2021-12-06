@@ -32,7 +32,11 @@ class ProductCard extends Component {
         }`}
       >
         <div className={styles.imageContainer}>
-          <img src={this.props.gallery[0]} className={styles.image} />
+          <img
+            src={this.props.gallery[0]}
+            alt={this.props.name}
+            className={styles.image}
+          />
 
           {this.props.inStock ? (
             <div className={styles.cartIcon}>
