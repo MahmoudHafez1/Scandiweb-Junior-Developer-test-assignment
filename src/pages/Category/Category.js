@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import withRouter from "../../helpers/withRouter";
+import { Link } from "react-router-dom";
 
 import styles from "./Category.module.css";
 import { runQuery } from "../../adapters/apolloClient";
@@ -57,15 +58,24 @@ class Category extends Component {
         </h2>
 
         <div className={styles.productListCont}>
-          {this.state.products.map((product, index) => (
-            <ProductCard
+          {this.state.products.map((product) => (
+            <Link
+              to={`${product.id}`}
               key={product.id}
-              gallery={product.gallery}
-              brand={product.brand}
-              name={product.name}
-              prices={product.prices}
-              inStock={product.inStock}
-            />
+              style={{
+                display: "grid",
+                textDecoration: "none",
+                cursor: "default",
+              }}
+            >
+              <ProductCard
+                gallery={product.gallery}
+                brand={product.brand}
+                name={product.name}
+                prices={product.prices}
+                inStock={product.inStock}
+              />
+            </Link>
           ))}
         </div>
       </div>

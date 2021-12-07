@@ -58,6 +58,7 @@
 .price {
   font-weight: bold;
   font-size: 1.125rem;
+  color: var(--secondary);
   margin-top: 4px;
   margin-bottom: 0;
 }

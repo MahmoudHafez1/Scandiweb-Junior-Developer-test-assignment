@@ -16,6 +16,10 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
+.productLink {
+  text-decoration: none;
+}
+
 @media (max-width: 850px) {
   .productListCont {
     grid-template-columns: repeat(2, 1fr);
