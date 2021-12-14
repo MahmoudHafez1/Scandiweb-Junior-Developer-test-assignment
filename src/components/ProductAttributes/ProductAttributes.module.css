@@ -23,6 +23,12 @@
   margin-top: 0;
 }
 
+.attrLabelSmall {
+  font-weight: normal;
+  font-size: 0.7rem;
+  margin-bottom: -0.5rem;
+}
+
 .attrValuesCont {
   display: flex;
   flex-wrap: wrap;

@@ -65,9 +65,14 @@ class ProductAttributes extends Component {
                 : styles.viewAttrSetCont
             }
           >
-            {!this.props.small && (
-              <p className={styles.attrLabel}>{attr.name}:</p>
-            )}
+            <p
+              className={`${styles.attrLabel} ${
+                this.props.small ? styles.attrLabelSmall : null
+              }`}
+            >
+              {attr.name}:
+            </p>
+
             <div className={styles.attrValuesCont}>
               {this.props.select ? (
                 attr.items.map((item) => (
