@@ -7,6 +7,7 @@ import Header from "./components/Header/Header";
 import Category from "./pages/Category/Category";
 import Product from "./pages/Product/Product";
 import Cart from "./pages/Cart/Cart";
+import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<p>Home</p>} />
+          <Route path="/" element={<LoadingScreen />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/:category" element={<Category />} />
           <Route path="/:category/:productId" element={<Product />} />

@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import Colors from "../../constants/Colors";
 import styles from "./Header.module.css";
 import { runQuery } from "../../adapters/apolloClient";
+import withRouter from "../../helpers/withRouter";
 
 class Navbar extends Component {
   constructor() {
@@ -29,6 +30,8 @@ class Navbar extends Component {
       this.setState({
         categories: res.categories,
       });
+      const firstCategory = res.categories[0].name;
+      this.props.navigate(`/${firstCategory}`);
     }
   };
 
@@ -60,4 +63,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);
