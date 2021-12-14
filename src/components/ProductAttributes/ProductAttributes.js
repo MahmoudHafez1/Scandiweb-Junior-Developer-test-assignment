@@ -50,7 +50,6 @@ class ProductAttributes extends Component {
   }
 
   render() {
-    console.log(this.props.selectedAttributes);
     return (
       <div
         className={

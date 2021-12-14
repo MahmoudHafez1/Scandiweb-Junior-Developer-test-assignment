@@ -23,7 +23,7 @@ class CartModal extends Component {
     }
 
     return (
-      <div className={styles.cartModalCont}>
+      <div className={styles.container}>
         <p className={styles.title}>
           <span>{`My Bag, `}</span>
           {`${this.props.cart.length} items`}
