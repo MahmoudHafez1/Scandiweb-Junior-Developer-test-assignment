@@ -47,7 +47,6 @@ class Navbar extends Component {
         {this.state.categories.map((category) => (
           <li key={category.name}>
             <NavLink
-              exact
               to={`/${category.name}`}
               style={this.activeLinkStyle}
               className={styles.navLink}

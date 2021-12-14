@@ -1,4 +1,18 @@
 .container {
+  padding: 9.5rem 13rem 6rem 4.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.detailsContainer {
   flex: 0.4;
 }
 
@@ -17,51 +31,13 @@
 .title span:last-child {
   display: block;
   font-weight: 400;
-  margin-bottom: 2.5rem;
-}
-
-.attributesCont {
-  margin-bottom: 2.6rem;
-}
-
-.sideTitle {
-  font-family: "Roboto Condensed";
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  margin-top: 0;
-}
-
-.attrSetCont {
-  margin-bottom: 1.5rem;
-}
-
-.attrValuesCont {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.attrValueBox {
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 3.9rem;
-  min-height: 2.8rem;
-  border: 1px solid #000;
-  margin-right: 0.6rem;
-  margin-bottom: 0.5rem;
-  padding: 0.25rem;
-  font-family: "Source Sans Pro";
-  font-weight: 400;
-  color: #292929;
 }
 
 .price {
+  font-family: "Roboto Condensed";
   font-size: 1.5rem;
   font-weight: 700;
   margin-top: 1rem;
-  margin-bottom: 2.5rem;
   color: var(--secondary);
 }
 
@@ -74,7 +50,7 @@
   align-items: center;
   color: #fff;
   font-weight: 700;
-  margin-bottom: 2.5rem;
+  margin: 2.5rem 0;
 }
 
 .addToCartBtn:hover {
@@ -84,4 +60,16 @@
 .descriptionBox {
   width: 100%;
   font-family: "Roboto";
+}
+
+.sideLabel {
+  font-family: "Roboto Condensed";
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: -0.25rem;
+  margin-top: 0;
+}
+
+.small {
+  font-size: 1rem;
 }

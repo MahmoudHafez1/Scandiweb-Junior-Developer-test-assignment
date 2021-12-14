@@ -1,12 +1,12 @@
 .container {
-  padding: 5.2vh 7vw 12.6vh 7vw;
+  padding: 10rem 6.25rem 11rem 6.25rem;
 }
 
 .title {
   font-style: normal;
   font-size: 2.6rem;
   color: var(--secondary);
-  margin-bottom: 5.7vh;
+  margin-bottom: 5rem;
   margin-top: 0;
 }
 

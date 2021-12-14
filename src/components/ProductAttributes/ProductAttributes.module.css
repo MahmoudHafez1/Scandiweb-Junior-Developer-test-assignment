@@ -1,0 +1,86 @@
+.selectAttrCont {
+  margin: 2.5rem 0;
+}
+
+.viewAttrCont {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.selectAttrSetCont {
+  margin-bottom: 1.5rem;
+}
+.viewAttrSetCont {
+  margin-right: 0.5rem;
+}
+
+.attrLabel {
+  font-family: "Roboto Condensed";
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: -0.25rem;
+  margin-top: 0;
+}
+
+.attrValuesCont {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.attrBox {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 3.9rem;
+  min-height: 2.8rem;
+  border: 1px solid #000;
+  margin-right: 0.6rem;
+  margin-top: 0.5rem;
+  padding: 0.25rem;
+  font-family: "Source Sans Pro";
+  font-weight: 400;
+  color: #292929;
+  cursor: default;
+}
+
+.attrBox:hover {
+  background-color: black;
+  color: white;
+}
+
+.colorBox {
+  box-sizing: border-box;
+  min-width: 3.9rem;
+  min-height: 2.8rem;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 2px;
+  margin-right: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.colorBox:hover {
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 5px 5px;
+  transform: translateY(-10%);
+}
+
+.selectedAttrBox {
+  background-color: black;
+  color: white;
+}
+
+.selectedColorBox {
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 5px 5px;
+  transform: translateY(-10%);
+}
+
+.viewOnly {
+  pointer-events: none;
+}
+
+.smallBox {
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  font-size: 0.8rem;
+}

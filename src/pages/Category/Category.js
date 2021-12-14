@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 import styles from "./Category.module.css";
 import { runQuery } from "../../adapters/apolloClient";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 
 class Category extends Component {
   constructor() {
     super();
     this.state = {
       products: [],
+      loading: true,
     };
   }
 
@@ -35,7 +37,7 @@ class Category extends Component {
     if (res.error) {
       alert("something went wrong");
     } else {
-      this.setState({ products: res.category.products });
+      this.setState({ products: res.category.products, loading: false });
     }
   };
 
@@ -50,6 +52,7 @@ class Category extends Component {
   }
 
   render() {
+    if (this.state.loading) return <LoadingScreen />;
     const category = this.props.params.category;
     return (
       <div className={styles.container}>

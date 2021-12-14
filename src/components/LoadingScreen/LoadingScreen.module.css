@@ -1,0 +1,35 @@
+.loading {
+  margin-top: 7rem;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.loading div:last-child {
+  animation: right 0.5s infinite;
+}
+
+.loading div:first-child {
+  animation: left 0.5s infinite 0.5s;
+}
+
+@keyframes left {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes right {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

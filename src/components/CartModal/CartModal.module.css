@@ -1,0 +1,62 @@
+.cartModalCont {
+  width: 20.3rem;
+  padding: 1rem 2rem;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cartItemsCont {
+  max-height: 30rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding-right: 0.2rem;
+}
+
+.title {
+  font-size: 1rem;
+}
+
+.title span {
+  font-weight: 700;
+}
+
+.totalContainer {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.actionContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.actionContainer div {
+  width: 8.75rem;
+  height: 2.68rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.viewBag {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+}
+
+.viewBag:hover {
+  background-color: black;
+  color: white;
+}
+
+.checkout {
+  background-color: var(--primary);
+  color: white;
+}

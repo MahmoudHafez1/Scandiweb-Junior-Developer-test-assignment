@@ -14,3 +14,14 @@ export const getCurrSymbol = (curr) => {
       break;
   }
 };
+
+const selectPrice = (prices, currency) => {
+  const price = prices.find((price) => price.currency === currency);
+  const currSymbol = getCurrSymbol(price.currency);
+  return {
+    amount: price.amount,
+    currSymbol,
+  };
+};
+
+export default selectPrice;

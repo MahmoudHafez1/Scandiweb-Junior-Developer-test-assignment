@@ -4,8 +4,8 @@ class Cart {
     prodId,
     prodBrand,
     prodName,
-    prodPrice,
-    prodImage,
+    prodPrices,
+    prodGallery,
     prodAttributes
   ) {
     this._id = ++Cart.count;
@@ -13,8 +13,8 @@ class Cart {
     this.prodId = prodId;
     this.prodBrand = prodBrand;
     this.prodName = prodName;
-    this.prodPrice = prodPrice;
-    this.prodImage = prodImage;
+    this.prodPrices = prodPrices;
+    this.prodGallery = prodGallery;
     this.prodAttributes = prodAttributes;
   }
   static count = 0;

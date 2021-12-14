@@ -1,16 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { addToCart, removeFromCart } from "../../store/actions/cartActions";
+import ProductGallery from "../ProductGallery/ProductGallery";
+import { addToCart, removeFromCart } from "../../store/actions";
 import styles from "./ProductDetails.module.css";
-import ProductAttributes from "./ProductAttributes";
-import { getCurrSymbol } from "../../helpers/currencySymbol";
+import ProductAttributes from "../ProductAttributes/ProductAttributes";
+import selectPrice from "../../helpers/selectPrice";
+import ProductTitle from "./ProductTitle";
+import SideLabel from "./SideLabel";
+import ProductPrice from "./ProductPrice";
 
 class ProductDetails extends Component {
   constructor() {
     super();
     this.state = {
-      price: "",
+      price: {},
+      selectedAttributes: [],
     };
     this.descriptionRef = React.createRef();
   }
@@ -18,62 +23,84 @@ class ProductDetails extends Component {
   componentDidMount() {
     const descriptionBox = this.descriptionRef.current;
     descriptionBox.innerHTML = this.props.description;
-    const curr = "USD";
-    const currSymbol = getCurrSymbol(curr);
-    const price = this.props.prices.find((price) => price.currency === curr);
     this.setState({
-      price: currSymbol + price.amount,
+      price: selectPrice(this.props.prices, this.props.currency),
     });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.currency !== this.props.currency) {
+      this.setState({
+        price: selectPrice(this.props.prices, this.props.currency),
+      });
+    }
   }
 
   removeHandler() {
     this.props.removeCart(1);
   }
 
-  addCartHandler() {
-    this.props.addCart({
-      prodName: "nike",
-      prodPrice: 10,
-      prodBrand: "Addidas",
-      prodGallery: "aaa",
-      prodId: "25",
-      prodAttributes: [{ name: "size", value: "S" }],
+  addCartHandler = async () => {
+    if (this.state.selectedAttributes.length !== this.props.attributes.length) {
+      alert("please select attributes");
+      return;
+    }
+
+    await this.props.addCart({
+      prodName: this.props.name,
+      prodPrices: this.props.prices,
+      prodBrand: this.props.brand,
+      prodGallery: this.props.gallery,
+      prodId: this.props.id,
+      prodAttributes: this.state.selectedAttributes,
     });
-    this.props.addCart({
-      prodName: "nike",
-      prodPrice: 10,
-      prodBrand: "Addidas",
-      prodGallery: "aaa",
-      prodId: "25",
-      prodAttributes: [{ name: "size", value: "S" }],
-    });
+
+    this.setState({ selectedAttributes: [] });
+  };
+
+  selectAttrHandler(attrName, attrType, attrValue) {
+    const attrIndex = this.state.selectedAttributes.findIndex(
+      (attr) => attr.name === attrName
+    );
+    if (attrIndex === -1) {
+      this.setState((state) => ({
+        selectedAttributes: [
+          ...state.selectedAttributes,
+          { name: attrName, type: attrType, value: attrValue },
+        ],
+      }));
+    } else {
+      const newSelectedAttributes = [...this.state.selectedAttributes];
+      newSelectedAttributes[attrIndex].value = attrValue;
+      this.setState({ selectedAttributes: newSelectedAttributes });
+    }
   }
 
   render() {
-    console.log(this.props.cart);
     return (
       <div className={styles.container}>
-        <h2 className={styles.title}>
-          <span>{this.props.brand}</span>
-          <span>{this.props.name}</span>
-        </h2>
-        <ProductAttributes attributes={this.props.attributes} />
-        <p className={styles.sideTitle}>PRICE:</p>
-        <p className={styles.price}>{this.state.price}</p>
-        <div
-          className={styles.addToCartBtn}
-          onClick={this.addCartHandler.bind(this)}
-        >
-          ADD TO CART
+        <ProductGallery gallery={this.props.gallery} />
+        <div className={styles.detailsContainer}>
+          <ProductTitle name={this.props.name} brand={this.props.brand} />
+          <ProductAttributes
+            attributes={this.props.attributes}
+            selectAttrHandler={this.selectAttrHandler.bind(this)}
+            selectedAttributes={this.state.selectedAttributes}
+            select
+          />
+          <SideLabel text="PRICE:" />
+          <ProductPrice price={this.state.price} />
+          <div
+            className={styles.addToCartBtn}
+            onClick={this.addCartHandler.bind(this)}
+          >
+            ADD TO CART
+          </div>
+          <div
+            className={styles.descriptionBox}
+            ref={this.descriptionRef}
+          ></div>
         </div>
-        <div
-          className={styles.addToCartBtn}
-          onClick={this.removeHandler.bind(this)}
-        >
-          Remove
-        </div>
-
-        <div className={styles.descriptionBox} ref={this.descriptionRef}></div>
       </div>
     );
   }
@@ -82,6 +109,7 @@ class ProductDetails extends Component {
 const mapStateToProps = (state) => {
   return {
     cart: state.cart,
+    currency: state.currency,
   };
 };
 

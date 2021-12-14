@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { getCurrSymbol } from "../../helpers/currencySymbol";
+import selectPrice from "../../helpers/selectPrice";
 import { BsCart2 } from "react-icons/bs";
+import { connect } from "react-redux";
 
 import styles from "./ProductCard.module.css";
 
@@ -8,23 +9,26 @@ class ProductCard extends Component {
   constructor() {
     super();
     this.state = {
-      price: "",
+      price: {},
     };
   }
 
-  viewSelectedCurrency() {
-    const price = this.props.prices.find((price) => price.currency === "USD");
-    const currSymbol = getCurrSymbol(price.currency);
+  componentDidMount() {
     this.setState({
-      price: `${currSymbol}${price.amount}`,
+      price: selectPrice(this.props.prices, this.props.currency),
     });
   }
 
-  componentDidMount() {
-    this.viewSelectedCurrency();
+  componentDidUpdate(prevProps) {
+    if (prevProps.currency !== this.props.currency) {
+      this.setState({
+        price: selectPrice(this.props.prices, this.props.currency),
+      });
+    }
   }
 
   render() {
+    const price = Math.round(this.state.price.amount * 100) / 100;
     return (
       <div
         className={`${styles.container} ${
@@ -49,10 +53,16 @@ class ProductCard extends Component {
         <h3
           className={styles.title}
         >{`${this.props.brand} ${this.props.name}`}</h3>
-        <p className={styles.price}>{this.state.price}</p>
+        <p className={styles.price}>
+          {`${this.state.price.currSymbol}${price}`}
+        </p>
       </div>
     );
   }
 }
 
-export default ProductCard;
+const mapStateToProps = (state) => ({
+  currency: state.currency,
+});
+
+export default connect(mapStateToProps, null)(ProductCard);
