@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import "./App.css";
 import store from "./store/store";
 import Header from "./components/Header/Header";
+import AllProducts from "./pages/AllProducts/AllProducts";
 import Category from "./pages/Category/Category";
 import Product from "./pages/Product/Product";
 import Cart from "./pages/Cart/Cart";
@@ -15,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<LoadingScreen />} />
+          <Route path="/" element={<AllProducts />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/:category" element={<Category />} />
           <Route path="/:category/:productId" element={<Product />} />

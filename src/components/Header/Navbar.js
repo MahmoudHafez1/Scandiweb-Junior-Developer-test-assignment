@@ -30,8 +30,6 @@ class Navbar extends Component {
       this.setState({
         categories: res.categories,
       });
-      const firstCategory = res.categories[0].name;
-      this.props.navigate(`/${firstCategory}`);
     }
   };
 
@@ -47,6 +45,15 @@ class Navbar extends Component {
   render() {
     return (
       <ul className={styles.navList}>
+        <li>
+          <NavLink
+            to="/"
+            style={this.activeLinkStyle}
+            className={styles.navLink}
+          >
+            All
+          </NavLink>
+        </li>
         {this.state.categories.map((category) => (
           <li key={category.name}>
             <NavLink

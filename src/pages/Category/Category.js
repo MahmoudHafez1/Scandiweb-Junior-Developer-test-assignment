@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import withRouter from "../../helpers/withRouter";
-import { Link } from "react-router-dom";
 
-import styles from "./Category.module.css";
 import { runQuery } from "../../adapters/apolloClient";
-import ProductCard from "../../components/ProductCard/ProductCard";
 import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
+import ProductCardList from "../../components/ProductCardList/ProductCardList";
 
 class Category extends Component {
   constructor() {
@@ -54,35 +52,7 @@ class Category extends Component {
   render() {
     if (this.state.loading) return <LoadingScreen />;
     const category = this.props.params.category;
-    return (
-      <div className={styles.container}>
-        <h2 className={styles.title}>
-          {category[0].toUpperCase() + category.slice(1)}
-        </h2>
-
-        <div className={styles.productListCont}>
-          {this.state.products.map((product) => (
-            <Link
-              to={`${product.id}`}
-              key={product.id}
-              style={{
-                display: "grid",
-                textDecoration: "none",
-                cursor: "default",
-              }}
-            >
-              <ProductCard
-                gallery={product.gallery}
-                brand={product.brand}
-                name={product.name}
-                prices={product.prices}
-                inStock={product.inStock}
-              />
-            </Link>
-          ))}
-        </div>
-      </div>
-    );
+    return <ProductCardList products={this.state.products} title={category} />;
   }
 }
 

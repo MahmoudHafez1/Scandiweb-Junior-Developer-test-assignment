@@ -10,7 +10,7 @@
   margin-top: 0;
 }
 
-.productListCont {
+.listCont {
   display: grid;
   grid-gap: 5.2vh 2.7vw;
   grid-template-columns: repeat(3, 1fr);
@@ -21,13 +21,13 @@
 }
 
 @media (max-width: 850px) {
-  .productListCont {
+  .listCont {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 550px) {
-  .productListCont {
+  .listCont {
     grid-template-columns: repeat(1, 1fr);
   }
 }
