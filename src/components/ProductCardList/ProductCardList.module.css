@@ -20,6 +20,12 @@
   text-decoration: none;
 }
 
+.link {
+  display: grid;
+  text-decoration: none;
+  cursor: default;
+}
+
 @media (max-width: 850px) {
   .listCont {
     grid-template-columns: repeat(2, 1fr);

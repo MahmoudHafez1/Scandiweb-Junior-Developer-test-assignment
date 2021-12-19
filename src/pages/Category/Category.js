@@ -15,7 +15,36 @@ class Category extends Component {
   }
 
   fetchProducts = async () => {
-    const res = await runQuery(`
+    const category = this.props.params.category;
+    if (category === "All") {
+      const res = await runQuery(`
+       query {
+        categories {
+           products {
+                id
+                brand
+                name
+                inStock
+                gallery
+                prices {
+                  currency
+                  amount
+                }
+            }
+        }
+      }
+    `);
+      if (res.error) {
+        alert("something went wrong");
+      } else {
+        const products = [];
+        res.categories.forEach((category) => {
+          products.push(...category.products);
+        });
+        this.setState({ products: products, loading: false });
+      }
+    } else {
+      const res = await runQuery(`
        query {
             category(input:{title:"${this.props.params.category}"}){
                 products {
@@ -32,10 +61,11 @@ class Category extends Component {
             }
         }
     `);
-    if (res.error) {
-      alert("something went wrong");
-    } else {
-      this.setState({ products: res.category.products, loading: false });
+      if (res.error) {
+        alert("something went wrong");
+      } else {
+        this.setState({ products: res.category.products, loading: false });
+      }
     }
   };
 

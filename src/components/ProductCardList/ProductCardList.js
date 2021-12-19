@@ -13,15 +13,7 @@ class ProductCardList extends Component {
         </h2>
         <div className={styles.listCont}>
           {this.props.products.map((product) => (
-            <Link
-              to={`${product.id}`}
-              key={product.id}
-              style={{
-                display: "grid",
-                textDecoration: "none",
-                cursor: "default",
-              }}
-            >
+            <Link to={product.id} key={product.id} className={styles.link}>
               <ProductCard
                 gallery={product.gallery}
                 brand={product.brand}

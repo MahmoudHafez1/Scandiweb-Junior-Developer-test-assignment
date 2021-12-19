@@ -30,6 +30,7 @@ class Navbar extends Component {
       this.setState({
         categories: res.categories,
       });
+      this.props.navigate("/All");
     }
   };
 
@@ -47,7 +48,7 @@ class Navbar extends Component {
       <ul className={styles.navList}>
         <li>
           <NavLink
-            to="/"
+            to="/All"
             style={this.activeLinkStyle}
             className={styles.navLink}
           >
