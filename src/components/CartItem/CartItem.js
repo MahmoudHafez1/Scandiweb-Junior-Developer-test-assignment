@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import styles from "./CartItem.module.css";
-import prodAttrStyles from "../ProductAttributes/ProductAttributes.module.css";
-import ProductAttributes from "../ProductAttributes/ProductAttributes";
 import { incrementCartItem, removeFromCart } from "../../store/actions";
 import selectPrice from "../../helpers/selectPrice";
 import ProductTitle from "../ProductDetails/ProductTitle";
 import ProductPrice from "../ProductDetails/ProductPrice";
+import ViewProdAttributes from "../ViewProdAttributes/ViewProdAttributes";
 
 class CartItem extends Component {
   state = {
@@ -44,61 +43,64 @@ class CartItem extends Component {
   }
 
   render() {
-    const { _id, prodName, prodBrand, prodGallery, prodAttributes, amount } =
-      this.props;
+    const {
+      _id,
+      prodName,
+      prodBrand,
+      prodGallery,
+      prodAttributes,
+      selectedAttributes,
+      amount,
+      small,
+    } = this.props;
 
     const cartTotalPrice = {
       amount: Math.round(this.state.price.amount * amount * 100) / 100,
       currSymbol: this.state.price.currSymbol,
     };
 
-    let attrBoxStyle = prodAttrStyles.attrBox;
-
-    if (this.props.small) {
-      attrBoxStyle = `${prodAttrStyles.attrBox} ${prodAttrStyles.smallBox}`;
-    }
-
     return (
       <div className={styles.container}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexDirection: "column",
-            height: "100%",
-          }}
-        >
-          <ProductTitle
-            name={prodName}
-            brand={prodBrand}
-            small={this.props.small}
-          />
-          <ProductPrice price={cartTotalPrice} small={this.props.small} />
-          <ProductAttributes
+        <div className={styles.prodDetailsCont}>
+          <ProductTitle name={prodName} brand={prodBrand} small={small} />
+          <div className={small ? null : styles.priceCont}>
+            <ProductPrice price={cartTotalPrice} small={small} />
+          </div>
+
+          <ViewProdAttributes
             attributes={prodAttributes}
-            small={this.props.small}
+            selectedAttributes={selectedAttributes}
+            small={small}
           />
         </div>
         <div className={styles.amountImgCont}>
           <div className={styles.amountCont}>
             <div
-              className={attrBoxStyle}
-              style={{ margin: 0 }}
+              className={`${styles.plusMinusBox} ${
+                small ? styles.smallBox : null
+              }`}
               onClick={this.props.incrItem.bind(this, _id)}
             >
               +
             </div>
             <p>{amount}</p>
             <div
-              className={attrBoxStyle}
-              style={{ margin: 0 }}
+              className={`${styles.plusMinusBox} ${
+                small ? styles.smallBox : null
+              }`}
               onClick={this.props.decrItem.bind(this, _id)}
             >
               -
             </div>
           </div>
-          <div className={styles.imgCont}>
-            <img src={prodGallery[this.state.imageIndex]} alt={prodName} />
+          <div
+            className={this.props.small ? styles.imgContSmall : styles.imgCont}
+          >
+            <img
+              src={prodGallery[this.state.imageIndex]}
+              alt={prodName}
+              className={styles.selectedImg}
+            />
             <div className={styles.arrowsCont}>
               <div
                 className={styles.arrowBox}

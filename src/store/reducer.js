@@ -18,7 +18,10 @@ const reducer = (state = initialState, action) => {
       const cartItemIndex = state.cart.findIndex(
         (item) =>
           item.prodId === action.cartData.prodId &&
-          compareAttributes(item.prodAttributes, action.cartData.prodAttributes)
+          compareAttributes(
+            item.selectedAttributes,
+            action.cartData.selectedAttributes
+          )
       );
       let newCart = [];
       if (cartItemIndex !== -1) {
@@ -32,7 +35,8 @@ const reducer = (state = initialState, action) => {
           action.cartData.prodName,
           action.cartData.prodPrices,
           action.cartData.prodGallery,
-          action.cartData.prodAttributes
+          action.cartData.prodAttributes,
+          action.cartData.selectedAttributes
         );
         newCart = [...state.cart, newCartItem];
       }

@@ -1,0 +1,35 @@
+.selectAttrCont {
+  margin: 2.5rem 0;
+}
+
+.viewAttrCont {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.selectAttrSetCont {
+  margin-bottom: 1.5rem;
+}
+.viewAttrSetCont {
+  margin-right: 0.5rem;
+}
+
+.attrLabel {
+  font-family: "Roboto Condensed";
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: -0.25rem;
+  margin-top: 0;
+}
+
+.attrLabelSmall {
+  font-weight: normal;
+  font-size: 0.7rem;
+  margin-bottom: -0.5rem;
+}
+
+.attrValuesCont {
+  display: flex;
+  flex-wrap: wrap;
+}

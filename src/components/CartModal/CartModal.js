@@ -34,7 +34,7 @@ class CartModal extends Component {
               key={cartItem._id}
               {...cartItem}
               prodGallery={cartItem.prodGallery}
-              small={true}
+              small
             />
           ))}
         </div>

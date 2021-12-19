@@ -16,8 +16,12 @@
   flex: 0.4;
 }
 
+.titleCont {
+  margin-bottom: 2rem;
+}
+
 .title {
-  margin-top: 0;
+  margin: 0;
   font-size: 1.8rem;
   color: var(--secondary);
 }
@@ -25,7 +29,7 @@
 .title span:first-child {
   display: block;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .title span:last-child {
@@ -33,11 +37,15 @@
   font-weight: 400;
 }
 
+.priceCont {
+  margin-top: 2rem;
+}
+
 .price {
   font-family: "Roboto Condensed";
   font-size: 1.5rem;
   font-weight: 700;
-  margin-top: 1rem;
+  margin: 0.5rem 0;
   color: var(--secondary);
 }
 
@@ -50,7 +58,7 @@
   align-items: center;
   color: #fff;
   font-weight: 700;
-  margin: 2.5rem 0;
+  margin: 2rem 0;
 }
 
 .addToCartBtn:hover {

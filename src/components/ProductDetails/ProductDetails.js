@@ -4,11 +4,12 @@ import { connect } from "react-redux";
 import ProductGallery from "../ProductGallery/ProductGallery";
 import { addToCart, removeFromCart } from "../../store/actions";
 import styles from "./ProductDetails.module.css";
-import ProductAttributes from "../ProductAttributes/ProductAttributes";
 import selectPrice from "../../helpers/selectPrice";
 import ProductTitle from "./ProductTitle";
 import SideLabel from "./SideLabel";
 import ProductPrice from "./ProductPrice";
+import SelectProdAttributes from "../SelectProdAtrributes/SelectProdAttributes";
+import { Link } from "react-router-dom";
 
 class ProductDetails extends Component {
   constructor() {
@@ -52,7 +53,8 @@ class ProductDetails extends Component {
       prodBrand: this.props.brand,
       prodGallery: this.props.gallery,
       prodId: this.props.id,
-      prodAttributes: this.state.selectedAttributes,
+      prodAttributes: this.props.attributes,
+      selectedAttributes: this.state.selectedAttributes,
     });
 
     this.setState({ selectedAttributes: [] });
@@ -81,21 +83,27 @@ class ProductDetails extends Component {
       <div className={styles.container}>
         <ProductGallery gallery={this.props.gallery} />
         <div className={styles.detailsContainer}>
-          <ProductTitle name={this.props.name} brand={this.props.brand} />
-          <ProductAttributes
+          <div className={styles.titleCont}>
+            <ProductTitle name={this.props.name} brand={this.props.brand} />
+          </div>
+
+          <SelectProdAttributes
             attributes={this.props.attributes}
             selectAttrHandler={this.selectAttrHandler.bind(this)}
             selectedAttributes={this.state.selectedAttributes}
-            select
           />
-          <SideLabel text="PRICE:" />
-          <ProductPrice price={this.state.price} />
+          <div className={styles.priceCont}>
+            <SideLabel text="PRICE:" />
+            <ProductPrice price={this.state.price} />
+          </div>
+
           <div
             className={styles.addToCartBtn}
             onClick={this.addCartHandler.bind(this)}
           >
             ADD TO CART
           </div>
+          <Link to="/cart">GO TO CART</Link>
           <div
             className={styles.descriptionBox}
             ref={this.descriptionRef}

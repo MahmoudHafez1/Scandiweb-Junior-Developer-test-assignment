@@ -6,7 +6,8 @@ class Cart {
     prodName,
     prodPrices,
     prodGallery,
-    prodAttributes
+    prodAttributes,
+    selectedAttributes
   ) {
     this._id = ++Cart.count;
     this.amount = amount;
@@ -16,6 +17,7 @@ class Cart {
     this.prodPrices = prodPrices;
     this.prodGallery = prodGallery;
     this.prodAttributes = prodAttributes;
+    this.selectedAttributes = selectedAttributes;
   }
   static count = 0;
 }
