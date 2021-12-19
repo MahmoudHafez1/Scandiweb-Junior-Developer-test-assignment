@@ -9,6 +9,8 @@ class Header extends Component {
     return (
       <div className={styles.headerContainer}>
         <Navbar />
+        <img src="/logo1.png" className={styles.logo} />
+        <img src="/logo2.png" className={styles.logo} />
         <Actions />
       </div>
     );
