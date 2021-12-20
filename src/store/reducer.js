@@ -23,9 +23,8 @@ const reducer = (state = initialState, action) => {
             action.cartData.selectedAttributes
           )
       );
-      let newCart = [];
+      const newCart = [...state.cart];
       if (cartItemIndex !== -1) {
-        newCart = [...state.cart];
         newCart[cartItemIndex].amount = newCart[cartItemIndex].amount + 1;
       } else {
         const newCartItem = new Cart(
@@ -38,7 +37,7 @@ const reducer = (state = initialState, action) => {
           action.cartData.prodAttributes,
           action.cartData.selectedAttributes
         );
-        newCart = [...state.cart, newCartItem];
+        newCart.push(newCartItem);
       }
       return {
         ...state,
@@ -62,17 +61,22 @@ const reducer = (state = initialState, action) => {
       const cartItemIndex = state.cart.findIndex(
         (item) => item._id === action.cartItemId
       );
-      let newCart = [];
       if (state.cart[cartItemIndex].amount > 1) {
-        newCart = [...state.cart];
+        const newCart = [...state.cart];
         newCart[cartItemIndex].amount = newCart[cartItemIndex].amount - 1;
+        return {
+          ...state,
+          cart: newCart,
+        };
       } else {
-        newCart = state.cart.filter((item) => item._id !== action.cartItemId);
+        const newCart = state.cart.filter(
+          (item) => item._id !== action.cartItemId
+        );
+        return {
+          ...state,
+          cart: newCart,
+        };
       }
-      return {
-        ...state,
-        cart: newCart,
-      };
     }
 
     case UPDATE_CURRENCY: {

@@ -7,6 +7,10 @@
   justify-content: space-between;
 }
 
+.emptyBag {
+  padding: 2rem;
+}
+
 .cartItemsCont {
   max-height: 30rem;
   overflow-y: auto;
@@ -54,6 +58,10 @@
 .viewBag:hover {
   background-color: black;
   color: white;
+}
+
+.viewBagLink {
+  text-decoration: none;
 }
 
 .checkout {

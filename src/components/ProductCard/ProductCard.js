@@ -28,6 +28,11 @@ class ProductCard extends Component {
     }
   }
 
+  cartIconClickHandler(e) {
+    e.stopPropagation();
+    this.props.openProdModal(this.props.id);
+  }
+
   render() {
     const price = Math.round(this.state.price.amount * 100) / 100;
     return (
@@ -35,31 +40,32 @@ class ProductCard extends Component {
         className={`${styles.container} ${
           !this.props.inStock && styles.outStockOverlay
         }`}
+        onClick={() => this.props.navigate(this.props.id)}
       >
         <div className={styles.imageContainer}>
           <img
-            onClick={() => this.props.navigate(this.props.id)}
             src={this.props.gallery[0]}
             alt={this.props.name}
             className={styles.image}
           />
 
           {this.props.inStock ? (
-            <div className={styles.cartIcon} onClick={this.props.openProdModal}>
+            <div
+              className={styles.cartIcon}
+              onClick={this.cartIconClickHandler.bind(this)}
+            >
               <BsCart2 size={20} color="#fff" />
             </div>
           ) : (
             <p className={styles.outStockText}>OUT OF STOCK</p>
           )}
         </div>
-        <div onClick={() => this.props.navigate(this.props.id)}>
-          <h3
-            className={styles.title}
-          >{`${this.props.brand} ${this.props.name}`}</h3>
-          <p className={styles.price}>
-            {`${this.state.price.currSymbol}${price}`}
-          </p>
-        </div>
+        <h3
+          className={styles.title}
+        >{`${this.props.brand} ${this.props.name}`}</h3>
+        <p className={styles.price}>
+          {`${this.state.price.currSymbol}${price}`}
+        </p>
       </div>
     );
   }

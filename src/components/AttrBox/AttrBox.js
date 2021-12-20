@@ -4,7 +4,7 @@ import styles from "./AttrBox.module.css";
 
 class AttrBox extends Component {
   attrBoxStyle(type) {
-    let classes = [];
+    const classes = [];
 
     if (type === "swatch") {
       classes.push(styles.colorBox);
@@ -23,10 +23,11 @@ class AttrBox extends Component {
     return classes.join(" ");
   }
 
-  colorBoxStyle(value) {
-    return {
-      backgroundColor: value,
-    };
+  colorBoxStyle(type, value) {
+    if (type === "swatch")
+      return {
+        backgroundColor: value,
+      };
   }
 
   render() {
@@ -35,7 +36,7 @@ class AttrBox extends Component {
       <div
         className={this.attrBoxStyle(type)}
         onClick={this.props.onClick}
-        style={type === "swatch" ? this.colorBoxStyle(value) : null}
+        style={this.colorBoxStyle(type, value)}
       >
         {type === "swatch" ? null : value}
       </div>

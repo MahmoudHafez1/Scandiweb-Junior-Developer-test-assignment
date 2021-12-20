@@ -19,7 +19,7 @@ class CartModal extends Component {
 
   render() {
     if (this.props.cart.length === 0) {
-      return <div style={{ padding: "2rem" }}>Bag is Empty</div>;
+      return <div className={styles.emptyBag}>Bag is Empty</div>;
     }
 
     return (
@@ -45,7 +45,7 @@ class CartModal extends Component {
           )} ${this.calcTotalPrice()}`}</p>
         </div>
         <div className={styles.actionContainer}>
-          <Link to={"/cart"} style={{ textDecoration: "none" }}>
+          <Link to={"/cart"} className={styles.viewBagLink}>
             <div className={styles.viewBag} onClick={this.props.close}>
               VIEW BAG
             </div>
