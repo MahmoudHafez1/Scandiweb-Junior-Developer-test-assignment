@@ -41,16 +41,24 @@ class SelectProdAttributes extends Component {
     this.setState({ selectedAttributes: [] });
   }
 
+  componentDidMount() {
+    this.checkSelectedAttr();
+  }
+
   componentDidUpdate(_, prevState) {
     if (
       this.state.selectedAttributes.length !==
       prevState.selectedAttributes.length
     ) {
-      this.setState((state) => ({
-        allAttrSelected:
-          this.props.attributes.length === state.selectedAttributes.length,
-      }));
+      this.checkSelectedAttr();
     }
+  }
+
+  checkSelectedAttr() {
+    this.setState((state) => ({
+      allAttrSelected:
+        this.props.attributes.length === state.selectedAttributes.length,
+    }));
   }
 
   render() {

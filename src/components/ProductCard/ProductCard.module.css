@@ -15,11 +15,6 @@
   opacity: 0.6;
 }
 
-.outStockOverlay:hover {
-  box-shadow: none;
-  cursor: unset;
-}
-
 .outStockText {
   position: absolute;
   margin: 0;

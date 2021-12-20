@@ -1,19 +1,19 @@
 .container {
-  padding: 10rem 6.25rem 11rem 6.25rem;
+  padding: 6rem 5rem 8rem 5.5rem;
 }
 
 .title {
   font-style: normal;
   font-size: 2.6rem;
   color: var(--secondary);
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   margin-top: 0;
 }
 
 .listCont {
   display: grid;
   grid-gap: 5.2vh 2.7vw;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .productLink {
