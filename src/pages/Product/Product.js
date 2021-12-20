@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import styles from "./Product.module.css";
 import { runQuery } from "../../adapters/apolloClient";
 import withRouter from "../../helpers/withRouter";
 import ProductDetails from "../../components/ProductDetails/ProductDetails";
@@ -56,6 +57,7 @@ class Product extends Component {
 
       this.setState({
         productDetails: {
+          id: this.props.params.productId,
           name,
           brand,
           gallery,
@@ -72,10 +74,9 @@ class Product extends Component {
     if (this.state.loading) return <LoadingScreen />;
 
     return (
-      <ProductDetails
-        id={this.props.params.productId}
-        {...this.state.productDetails}
-      />
+      <div className={styles.container}>
+        <ProductDetails {...this.state.productDetails} />
+      </div>
     );
   }
 }

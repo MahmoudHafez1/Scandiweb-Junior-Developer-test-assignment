@@ -2,28 +2,26 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import ProductGallery from "../ProductGallery/ProductGallery";
-import { addToCart, removeFromCart } from "../../store/actions";
 import styles from "./ProductDetails.module.css";
-import selectPrice from "../../helpers/selectPrice";
 import ProductTitle from "./ProductTitle";
-import SideLabel from "./SideLabel";
-import ProductPrice from "./ProductPrice";
 import SelectProdAttributes from "../SelectProdAtrributes/SelectProdAttributes";
-import { Link } from "react-router-dom";
+import { addToCart } from "../../store/actions";
+import selectPrice from "../../helpers/selectPrice";
 
 class ProductDetails extends Component {
   constructor() {
     super();
     this.state = {
       price: {},
-      selectedAttributes: [],
     };
     this.descriptionRef = React.createRef();
   }
 
   componentDidMount() {
-    const descriptionBox = this.descriptionRef.current;
-    descriptionBox.innerHTML = this.props.description;
+    if (!this.props.overlay) {
+      const descriptionBox = this.descriptionRef.current;
+      descriptionBox.innerHTML = this.props.description;
+    }
     this.setState({
       price: selectPrice(this.props.prices, this.props.currency),
     });
@@ -37,16 +35,7 @@ class ProductDetails extends Component {
     }
   }
 
-  removeHandler() {
-    this.props.removeCart(1);
-  }
-
-  addCartHandler = async () => {
-    if (this.state.selectedAttributes.length !== this.props.attributes.length) {
-      alert("please select attributes");
-      return;
-    }
-
+  addCartHandler = async (selectedAttributes) => {
     await this.props.addCart({
       prodName: this.props.name,
       prodPrices: this.props.prices,
@@ -54,69 +43,37 @@ class ProductDetails extends Component {
       prodGallery: this.props.gallery,
       prodId: this.props.id,
       prodAttributes: this.props.attributes,
-      selectedAttributes: this.state.selectedAttributes,
+      selectedAttributes: selectedAttributes,
     });
-
-    this.setState({ selectedAttributes: [] });
   };
-
-  selectAttrHandler(attrName, attrType, attrValue) {
-    const attrIndex = this.state.selectedAttributes.findIndex(
-      (attr) => attr.name === attrName
-    );
-    if (attrIndex === -1) {
-      this.setState((state) => ({
-        selectedAttributes: [
-          ...state.selectedAttributes,
-          { name: attrName, type: attrType, value: attrValue },
-        ],
-      }));
-    } else {
-      const newSelectedAttributes = [...this.state.selectedAttributes];
-      newSelectedAttributes[attrIndex].value = attrValue;
-      this.setState({ selectedAttributes: newSelectedAttributes });
-    }
-  }
 
   render() {
     return (
-      <div className={styles.container}>
-        <ProductGallery gallery={this.props.gallery} />
+      <>
+        {!this.props.overlay && <ProductGallery gallery={this.props.gallery} />}
         <div className={styles.detailsContainer}>
           <div className={styles.titleCont}>
             <ProductTitle name={this.props.name} brand={this.props.brand} />
           </div>
-
           <SelectProdAttributes
             attributes={this.props.attributes}
-            selectAttrHandler={this.selectAttrHandler.bind(this)}
-            selectedAttributes={this.state.selectedAttributes}
+            price={this.state.price}
+            addToCart={this.addCartHandler.bind(this)}
           />
-          <div className={styles.priceCont}>
-            <SideLabel text="PRICE:" />
-            <ProductPrice price={this.state.price} />
-          </div>
-
-          <div
-            className={styles.addToCartBtn}
-            onClick={this.addCartHandler.bind(this)}
-          >
-            ADD TO CART
-          </div>
-          <Link to="/cart">GO TO CART</Link>
-          <div
-            className={styles.descriptionBox}
-            ref={this.descriptionRef}
-          ></div>
+          {!this.props.overlay && (
+            <div
+              className={styles.descriptionBox}
+              ref={this.descriptionRef}
+            ></div>
+          )}
         </div>
-      </div>
+      </>
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    cart: state.cart,
     currency: state.currency,
   };
 };
@@ -124,7 +81,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addCart: (cartData) => dispatch(addToCart(cartData)),
-    removeCart: (cartId) => dispatch(removeFromCart(cartId)),
   };
 };
 

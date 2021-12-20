@@ -4,6 +4,7 @@ import { BsCart2 } from "react-icons/bs";
 import { connect } from "react-redux";
 
 import styles from "./ProductCard.module.css";
+import withRouter from "../../helpers/withRouter";
 
 class ProductCard extends Component {
   constructor() {
@@ -37,25 +38,28 @@ class ProductCard extends Component {
       >
         <div className={styles.imageContainer}>
           <img
+            onClick={() => this.props.navigate(this.props.id)}
             src={this.props.gallery[0]}
             alt={this.props.name}
             className={styles.image}
           />
 
           {this.props.inStock ? (
-            <div className={styles.cartIcon}>
+            <div className={styles.cartIcon} onClick={this.props.openProdModal}>
               <BsCart2 size={20} color="#fff" />
             </div>
           ) : (
             <p className={styles.outStockText}>OUT OF STOCK</p>
           )}
         </div>
-        <h3
-          className={styles.title}
-        >{`${this.props.brand} ${this.props.name}`}</h3>
-        <p className={styles.price}>
-          {`${this.state.price.currSymbol}${price}`}
-        </p>
+        <div onClick={() => this.props.navigate(this.props.id)}>
+          <h3
+            className={styles.title}
+          >{`${this.props.brand} ${this.props.name}`}</h3>
+          <p className={styles.price}>
+            {`${this.state.price.currSymbol}${price}`}
+          </p>
+        </div>
       </div>
     );
   }
@@ -65,4 +69,4 @@ const mapStateToProps = (state) => ({
   currency: state.currency,
 });
 
-export default connect(mapStateToProps, null)(ProductCard);
+export default withRouter(connect(mapStateToProps, null)(ProductCard));

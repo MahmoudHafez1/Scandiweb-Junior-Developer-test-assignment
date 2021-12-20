@@ -1,19 +1,5 @@
-.container {
-  padding: 9.5rem 13rem 6rem 4.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-@media (max-width: 800px) {
-  .container {
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-
 .detailsContainer {
-  flex: 0.4;
+  flex: 0.5;
 }
 
 .titleCont {
@@ -59,10 +45,12 @@
   color: #fff;
   font-weight: 700;
   margin: 2rem 0;
+  transition: all 500ms;
 }
 
 .addToCartBtn:hover {
   cursor: pointer;
+  background-color: #499e5f;
 }
 
 .descriptionBox {

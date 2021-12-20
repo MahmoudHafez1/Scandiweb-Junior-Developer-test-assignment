@@ -1,0 +1,22 @@
+.overlay {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(98, 96, 96, 0.212);
+}
+.prodModal {
+  position: fixed;
+  z-index: 15;
+  padding: 2rem;
+  padding-bottom: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 95vh;
+  background-color: white;
+  overflow: auto;
+  scrollbar-width: 1px;
+}

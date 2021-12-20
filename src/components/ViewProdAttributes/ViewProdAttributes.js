@@ -30,6 +30,7 @@ class ViewProdAttributes extends Component {
                   value={item.value}
                   isSelected={this.isSelected(attr.name, item.value)}
                   small={this.props.small}
+                  key={item.value}
                 />
               ))}
             </div>
