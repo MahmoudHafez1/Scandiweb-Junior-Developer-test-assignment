@@ -34,6 +34,7 @@ class Product extends Component {
                  brand
                  name
                  description
+                 inStock
                  prices {
                     currency
                     amount
@@ -52,7 +53,7 @@ class Product extends Component {
 
     if (res.error) alert("something went wrong");
     else {
-      const { name, brand, gallery, description, prices, attributes } =
+      const { name, brand, gallery, description, inStock, prices, attributes } =
         res.product;
 
       this.setState({
@@ -61,9 +62,10 @@ class Product extends Component {
           name,
           brand,
           gallery,
+          description,
+          inStock,
           prices,
           attributes,
-          description,
         },
         loading: false,
       });

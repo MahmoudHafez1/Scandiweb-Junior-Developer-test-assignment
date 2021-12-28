@@ -62,9 +62,10 @@ class SelectProdAttributes extends Component {
   }
 
   render() {
+    const { attributes, price, outStock } = this.props;
     return (
       <>
-        {this.props.attributes.map((attr) => (
+        {attributes.map((attr) => (
           <div key={attr.name} className={styles.selectAttrSetCont}>
             <p className={styles.attrLabel}>{attr.name}:</p>
             <div className={styles.attrValuesCont}>
@@ -87,10 +88,10 @@ class SelectProdAttributes extends Component {
         ))}
         <div className={styles.priceCont}>
           <SideLabel text="PRICE:" />
-          <ProductPrice price={this.props.price} />
+          <ProductPrice price={price} />
         </div>
 
-        {this.state.allAttrSelected ? (
+        {this.state.allAttrSelected && !outStock ? (
           <div
             className={styles.addToCartBtn}
             onClick={this.addToCartHandler.bind(this)}
@@ -99,7 +100,7 @@ class SelectProdAttributes extends Component {
           </div>
         ) : (
           <div className={`${styles.addToCartBtn} ${styles.disable}`}>
-            ADD TO CART
+            {outStock ? "OUT OF STOCK" : "ADD TO CART"}
           </div>
         )}
       </>

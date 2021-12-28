@@ -50,7 +50,7 @@ class ProductDetails extends Component {
   };
 
   render() {
-    const { name, brand, gallery, attributes, overlay } = this.props;
+    const { name, brand, gallery, attributes, overlay, inStock } = this.props;
 
     return (
       <>
@@ -63,6 +63,7 @@ class ProductDetails extends Component {
             attributes={attributes}
             price={this.state.price}
             addToCart={this.addCartHandler.bind(this)}
+            outStock={!inStock && !overlay}
           />
           {!overlay && (
             <div
