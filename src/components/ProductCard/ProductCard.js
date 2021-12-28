@@ -49,7 +49,7 @@ class ProductCard extends Component {
               className={styles.cartIcon}
               onClick={this.cartIconClickHandler.bind(this)}
             >
-              <BsCart2 size={20} color="#fff" />
+              <BsCart2 size={15} color="#fff" />
             </div>
           ) : (
             <p className={styles.outStockText}>OUT OF STOCK</p>
