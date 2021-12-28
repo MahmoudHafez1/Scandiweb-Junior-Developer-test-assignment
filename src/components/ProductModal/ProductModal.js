@@ -42,12 +42,13 @@ class AttrModal extends Component {
   }
 
   render() {
-    if (!this.state.product) return <div>loading</div>;
     return (
       <>
         <div className={styles.overlay} onClick={this.props.close}></div>
         <div className={styles.prodModal}>
-          <ProductDetails {...this.state.product} overlay />
+          {this.state.product && (
+            <ProductDetails {...this.state.product} overlay />
+          )}
         </div>
       </>
     );
