@@ -35,21 +35,16 @@ class ProductCard extends Component {
 
   render() {
     const price = Math.round(this.state.price.amount * 100) / 100;
+    const { id, name, brand, gallery, inStock, navigate } = this.props;
     return (
       <div
-        className={`${styles.container} ${
-          !this.props.inStock && styles.outStockOverlay
-        }`}
-        onClick={() => this.props.navigate(this.props.id)}
+        className={`${styles.container} ${!inStock && styles.outStockOverlay}`}
+        onClick={() => navigate(id)}
       >
         <div className={styles.imageContainer}>
-          <img
-            src={this.props.gallery[0]}
-            alt={this.props.name}
-            className={styles.image}
-          />
+          <img src={gallery[0]} alt={name} className={styles.image} />
 
-          {this.props.inStock ? (
+          {inStock ? (
             <div
               className={styles.cartIcon}
               onClick={this.cartIconClickHandler.bind(this)}
@@ -60,9 +55,7 @@ class ProductCard extends Component {
             <p className={styles.outStockText}>OUT OF STOCK</p>
           )}
         </div>
-        <h3
-          className={styles.title}
-        >{`${this.props.brand} ${this.props.name}`}</h3>
+        <h3 className={styles.title}>{`${brand} ${name}`}</h3>
         <p className={styles.price}>
           {`${this.state.price.currSymbol}${price}`}
         </p>

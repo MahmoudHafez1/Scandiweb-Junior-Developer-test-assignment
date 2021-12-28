@@ -56,6 +56,8 @@ class Actions extends Component {
   }
 
   render() {
+    const { cart } = this.props;
+
     return (
       <div className={styles.actionsContainer}>
         <div
@@ -81,8 +83,8 @@ class Actions extends Component {
           <div>
             <BsCart2 size={20} />
           </div>
-          {this.props.cart.length > 0 ? (
-            <div className={styles.cartNotf}>{this.props.cart.length}</div>
+          {cart.length > 0 ? (
+            <div className={styles.cartNotf}>{cart.length}</div>
           ) : null}
         </div>
 
@@ -105,10 +107,7 @@ class Actions extends Component {
         )}
         {this.state.cartShow && (
           <Modal close={this.showCartToggle.bind(this)} overlay>
-            <CartModal
-              cart={this.props.cart}
-              close={this.showCartToggle.bind(this)}
-            />
+            <CartModal cart={cart} close={this.showCartToggle.bind(this)} />
           </Modal>
         )}
       </div>

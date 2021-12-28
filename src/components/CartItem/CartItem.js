@@ -52,6 +52,8 @@ class CartItem extends Component {
       selectedAttributes,
       amount,
       small,
+      incrItem,
+      decrItem,
     } = this.props;
 
     const cartTotalPrice = {
@@ -79,7 +81,7 @@ class CartItem extends Component {
               className={`${styles.plusMinusBox} ${
                 small ? styles.smallBox : null
               }`}
-              onClick={this.props.incrItem.bind(this, _id)}
+              onClick={incrItem.bind(this, _id)}
             >
               +
             </div>
@@ -88,14 +90,12 @@ class CartItem extends Component {
               className={`${styles.plusMinusBox} ${
                 small ? styles.smallBox : null
               }`}
-              onClick={this.props.decrItem.bind(this, _id)}
+              onClick={decrItem.bind(this, _id)}
             >
               -
             </div>
           </div>
-          <div
-            className={this.props.small ? styles.imgContSmall : styles.imgCont}
-          >
+          <div className={small ? styles.imgContSmall : styles.imgCont}>
             <img
               src={prodGallery[this.state.imageIndex]}
               alt={prodName}

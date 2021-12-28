@@ -18,7 +18,9 @@ class CartModal extends Component {
   }
 
   render() {
-    if (this.props.cart.length === 0) {
+    const { cart, currency, close } = this.props;
+
+    if (cart.length === 0) {
       return <div className={styles.emptyBag}>Bag is Empty</div>;
     }
 
@@ -26,10 +28,10 @@ class CartModal extends Component {
       <div className={styles.container}>
         <p className={styles.title}>
           <span>{`My Bag, `}</span>
-          {`${this.props.cart.length} items`}
+          {`${cart.length} items`}
         </p>
         <div className={styles.cartItemsCont}>
-          {this.props.cart.map((cartItem) => (
+          {cart.map((cartItem) => (
             <CartItem
               key={cartItem._id}
               {...cartItem}
@@ -40,13 +42,11 @@ class CartModal extends Component {
         </div>
         <div className={styles.totalContainer}>
           <p>Total</p>
-          <p>{`${getCurrSymbol(
-            this.props.currency
-          )} ${this.calcTotalPrice()}`}</p>
+          <p>{`${getCurrSymbol(currency)} ${this.calcTotalPrice()}`}</p>
         </div>
         <div className={styles.actionContainer}>
           <Link to={"/cart"} className={styles.viewBagLink}>
-            <div className={styles.viewBag} onClick={this.props.close}>
+            <div className={styles.viewBag} onClick={close}>
               VIEW BAG
             </div>
           </Link>

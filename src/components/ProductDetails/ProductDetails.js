@@ -18,12 +18,13 @@ class ProductDetails extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.overlay) {
+    const { overlay, description, prices, currency } = this.props;
+    if (!overlay) {
       const descriptionBox = this.descriptionRef.current;
-      descriptionBox.innerHTML = this.props.description;
+      descriptionBox.innerHTML = description;
     }
     this.setState({
-      price: selectPrice(this.props.prices, this.props.currency),
+      price: selectPrice(prices, currency),
     });
   }
 
@@ -36,31 +37,34 @@ class ProductDetails extends Component {
   }
 
   addCartHandler = async (selectedAttributes) => {
-    await this.props.addCart({
-      prodName: this.props.name,
-      prodPrices: this.props.prices,
-      prodBrand: this.props.brand,
-      prodGallery: this.props.gallery,
-      prodId: this.props.id,
-      prodAttributes: this.props.attributes,
+    const { id, name, prices, brand, gallery, attributes } = this.props;
+    await this.props.addToCart({
+      prodId: id,
+      prodName: name,
+      prodPrices: prices,
+      prodBrand: brand,
+      prodGallery: gallery,
+      prodAttributes: attributes,
       selectedAttributes: selectedAttributes,
     });
   };
 
   render() {
+    const { name, brand, gallery, attributes, overlay } = this.props;
+
     return (
       <>
-        {!this.props.overlay && <ProductGallery gallery={this.props.gallery} />}
+        {!overlay && <ProductGallery gallery={gallery} name={name} />}
         <div className={styles.detailsContainer}>
           <div className={styles.titleCont}>
-            <ProductTitle name={this.props.name} brand={this.props.brand} />
+            <ProductTitle name={name} brand={brand} />
           </div>
           <SelectProdAttributes
-            attributes={this.props.attributes}
+            attributes={attributes}
             price={this.state.price}
             addToCart={this.addCartHandler.bind(this)}
           />
-          {!this.props.overlay && (
+          {!overlay && (
             <div
               className={styles.descriptionBox}
               ref={this.descriptionRef}
@@ -80,7 +84,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addCart: (cartData) => dispatch(addToCart(cartData)),
+    addToCart: (cartData) => dispatch(addToCart(cartData)),
   };
 };
 

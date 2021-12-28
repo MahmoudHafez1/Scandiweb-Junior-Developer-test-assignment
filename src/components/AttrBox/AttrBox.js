@@ -31,11 +31,11 @@ class AttrBox extends Component {
   }
 
   render() {
-    const { type, value } = this.props;
+    const { type, value, onClick } = this.props;
     return (
       <div
         className={this.attrBoxStyle(type)}
-        onClick={this.props.onClick}
+        onClick={onClick}
         style={this.colorBoxStyle(type, value)}
       >
         {type === "swatch" ? null : value}

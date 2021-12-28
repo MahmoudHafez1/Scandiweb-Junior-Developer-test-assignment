@@ -17,6 +17,7 @@ class ProductGallery extends Component {
   }
 
   render() {
+    const { name } = this.props;
     return (
       <div className={styles.container}>
         <div className={styles.sideImgContainer}>
@@ -24,13 +25,13 @@ class ProductGallery extends Component {
             <img
               src={image}
               key={image}
-              alt={`${this.props.id} img`}
+              alt={name}
               onClick={this.sideImgClickHandler.bind(this, index)}
             />
           ))}
         </div>
         <div className={styles.imgPrevContainer}>
-          <img src={this.state.selectedImage} alt={`${this.props.id} img`} />
+          <img src={this.state.selectedImage} alt={name} />
         </div>
       </div>
     );

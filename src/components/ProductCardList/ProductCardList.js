@@ -22,6 +22,8 @@ class ProductCardList extends Component {
   }
 
   render() {
+    const { title, products } = this.props;
+
     return (
       <>
         {this.state.modalProdShow && (
@@ -32,10 +34,10 @@ class ProductCardList extends Component {
         )}
         <div className={styles.container}>
           <h2 className={styles.title}>
-            {this.props.title[0].toUpperCase() + this.props.title.slice(1)}
+            {title[0].toUpperCase() + title.slice(1)}
           </h2>
           <div className={styles.listCont}>
-            {this.props.products.map((product) => (
+            {products.map((product) => (
               <ProductCard
                 key={product.id}
                 id={product.id}

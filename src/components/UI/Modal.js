@@ -4,12 +4,11 @@ import styles from "./Modal.module.css";
 
 class Modal extends Component {
   render() {
+    const { overlay, close, children } = this.props;
     return (
       <>
-        {this.props.overlay && (
-          <div className={styles.overlay} onClick={this.props.close}></div>
-        )}
-        <div className={styles.container}>{this.props.children}</div>
+        {overlay && <div className={styles.overlay} onClick={close}></div>}
+        <div className={styles.container}>{children}</div>
       </>
     );
   }

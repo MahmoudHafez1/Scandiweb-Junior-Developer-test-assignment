@@ -12,15 +12,12 @@ class ViewProdAttributes extends Component {
   }
 
   render() {
+    const { attributes, small } = this.props;
     return (
       <div className={styles.selectAttrCont}>
-        {this.props.attributes.map((attr) => (
+        {attributes.map((attr) => (
           <div key={attr.name} className={styles.selectAttrSetCont}>
-            <p
-              className={
-                this.props.small ? styles.attrLabelSmall : styles.attrLabel
-              }
-            >
+            <p className={small ? styles.attrLabelSmall : styles.attrLabel}>
               {attr.name}:
             </p>
             <div className={styles.attrValuesCont}>
@@ -29,7 +26,7 @@ class ViewProdAttributes extends Component {
                   type={attr.type}
                   value={item.value}
                   isSelected={this.isSelected(attr.name, item.value)}
-                  small={this.props.small}
+                  small={small}
                   key={item.value}
                 />
               ))}

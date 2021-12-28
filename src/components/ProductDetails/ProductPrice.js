@@ -4,15 +4,11 @@ import styles from "./ProductDetails.module.css";
 
 class ProductPrice extends Component {
   render() {
-    const classes = this.props.small
-      ? `${styles.price} ${styles.small}`
-      : styles.price;
+    const { price, small } = this.props;
 
-    return (
-      <p
-        className={classes}
-      >{`${this.props.price.currSymbol} ${this.props.price.amount}`}</p>
-    );
+    const classes = small ? `${styles.price} ${styles.small}` : styles.price;
+
+    return <p className={classes}>{`${price.currSymbol} ${price.amount}`}</p>;
   }
 }
 
