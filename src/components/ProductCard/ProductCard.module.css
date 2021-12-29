@@ -1,7 +1,7 @@
 .container {
   box-sizing: border-box;
-  height: 15.5rem;
-  width: 15rem;
+  height: 37vh;
+  aspect-ratio: 0.9;
   min-width: 200px;
   padding: 1rem;
 }
