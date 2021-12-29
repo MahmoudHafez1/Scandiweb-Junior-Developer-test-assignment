@@ -14,7 +14,7 @@
   margin: 0 3rem 0 3rem;
   display: grid;
   grid-gap: 2vh 3vw;
-  grid-template-columns: repeat(3, 15rem);
+  grid-template-columns: repeat(3, 33.3vh);
   justify-content: space-between;
 }
 
